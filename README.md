@@ -1,6 +1,9 @@
 # Club Hípico La Herradura · Web del centro hípico
 
-**Ver la web online:** https://orianacejas-tech.github.io/club-hipico-la-herradura/
+**Ver la web online:**
+
+- En Vercel: https://club-hipico-la-herradura.vercel.app/
+- En GitHub Pages: https://orianacejas-tech.github.io/club-hipico-la-herradura/
 
 Web de un centro hípico (proyecto de ejemplo con datos ficticios) con:
 
@@ -110,6 +113,17 @@ Lo que tienes que saber:
 3. Copia la *Project URL* (en **Project Settings → Data API**) y la clave *publishable* (en **Project Settings → API Keys**), y ponlas en `js/datos.js`, en el bloque `newsletter`.
 
 **Enviar la newsletter:** de momento la web solo recoge los emails. Para enviar los correos, descarga la lista en CSV, o conecta más adelante un servicio de envío (por ejemplo Brevo o Resend).
+
+## Publicar cambios (Vercel y GitHub Pages)
+
+La web está publicada en dos sitios, y los dos leen el repositorio de GitHub (rama `main`):
+
+- **Vercel**: proyecto `club-hipico-la-herradura`, sin compilación (*Framework Preset: Other*).
+- **GitHub Pages**: rama `main`, carpeta raíz.
+
+Para publicar un cambio basta con subirlo a GitHub (`git add -A`, `git commit -m "…"` y `git push`). Vercel tarda menos de un minuto en actualizar la web y GitHub Pages, alrededor de un minuto. En vercel.com, pestaña **Deployments**, se ve cada publicación; si una falla, aparece en rojo.
+
+Vercel no publica el `README.md`, porque es documentación y no forma parte de la web.
 
 ## Problemas frecuentes
 
