@@ -21,6 +21,7 @@ function iniciarWeb() {
   prepararGaleria();
   prepararContacto();
   iniciarReservas();
+  iniciarNewsletter();
 
   window.addEventListener('hashchange', function () { mostrarRuta(false); });
   mostrarRuta(true);

@@ -996,6 +996,31 @@ a.enlace-flecha:hover .icono { transform: translateX(4px); }
 .oferta-destacada h2 { margin-bottom: .3rem; }
 .oferta-destacada p { margin: 0; }
 
+/* Invitación a la newsletter (inicio) */
+.newsletter-banda {
+  display: grid;
+  gap: 1rem 1.5rem;
+  align-items: center;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(1.4rem, 3vw, 2.1rem);
+  border-radius: var(--radio);
+  background-color: var(--nogal);
+  background-image: var(--vetas-madera);
+  color: var(--texto-claro);
+  box-shadow: var(--sombra);
+}
+.newsletter-banda__icono {
+  width: 3.4rem;
+  height: 3.4rem;
+  padding: .75rem;
+  border: 1.5px solid var(--laton);
+  border-radius: 50%;
+  color: var(--laton);
+}
+.newsletter-banda h2 { margin-bottom: .3rem; color: #FFF8EC; }
+.newsletter-banda p { margin: 0; color: var(--texto-claro-suave); }
+.newsletter-banda .antetitulo { margin-bottom: .4rem; color: var(--laton); }
+
 .bloque--dos-columnas {
   display: grid;
   gap: 2rem;
@@ -1455,6 +1480,8 @@ a.enlace-flecha:hover .icono { transform: translateX(4px); }
   display: grid;
   gap: 0 1rem;
 }
+/* Si detrás vienen más campos, el último de la pareja también deja su hueco */
+.campos-dobles:not(:last-child) > .campo:last-child { margin-bottom: 1rem; }
 .campo--casilla {
   grid-template-columns: auto 1fr;
   align-items: start;
@@ -1468,6 +1495,25 @@ a.enlace-flecha:hover .icono { transform: translateX(4px); }
 }
 .campo--casilla > label { font-weight: 400; color: var(--texto); }
 .campo--casilla .campo__error { grid-column: 1 / -1; }
+.formulario .acciones + .aviso { margin: 1rem 0 0; }
+.boton:disabled { opacity: .7; cursor: wait; }
+
+/* Newsletter: temas, campo trampa contra robots y tarjeta de baja */
+.opciones--temas { grid-template-columns: repeat(auto-fill, minmax(min(100%, 11.5rem), 1fr)); }
+.campo-trampa {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.newsletter-ventajas .lista-check { margin-bottom: 1rem; }
+.newsletter-ventajas .foto {
+  margin-top: auto;
+  aspect-ratio: 16 / 7;
+  border-radius: var(--radio-peq);
+}
+.tarjeta--estrecha { max-width: 40rem; }
 
 /* Opciones de modalidad (clase suelta / bono) */
 .opciones {
@@ -1854,6 +1900,9 @@ a.enlace-flecha:hover .icono { transform: translateX(4px); }
 .pie__lista .icono { margin-top: .2rem; color: var(--laton); }
 .horario--pie div { border-bottom-color: rgba(201, 162, 74, .25); }
 .horario--pie dd { color: var(--texto-claro-suave); }
+.pie__titulo--newsletter { margin-top: 1.6rem; }
+.pie__texto { margin-bottom: .8rem; color: var(--texto-claro-suave); }
+.pie .boton--claro:hover { color: var(--nogal); }
 .pie__legal {
   max-width: var(--ancho-contenido);
   margin: 2rem auto 0;
@@ -1884,7 +1933,8 @@ a.enlace-flecha:hover .icono { transform: translateX(4px); }
 
 @media (min-width: 48em) {
   .cifras { grid-template-columns: repeat(4, 1fr); }
-  .oferta-destacada { grid-template-columns: auto 1fr auto; }
+  .oferta-destacada,
+  .newsletter-banda { grid-template-columns: auto 1fr auto; }
 }
 
 @media (min-width: 56em) {

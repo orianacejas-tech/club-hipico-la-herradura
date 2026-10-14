@@ -5,6 +5,7 @@
      · los precios de las clases, los bonos, las rutas y el pupilaje
      · los horarios y las plazas de cada actividad
      · los datos de contacto (teléfono, WhatsApp, email, dirección, horario)
+     · la conexión de la newsletter con la base de datos (Supabase)
    La web "pinta" estos datos automáticamente en todas las páginas: tarjetas,
    tablas de precios, menú lateral, formulario de reservas y pie de página.
 
@@ -342,5 +343,16 @@ const CLUB = {
     simularOcupacion: true,     // true = la web simula que otras personas ya han reservado plazas
                                 // (para la demostración). Pon false cuando el club la use de verdad.
     formaPago: 'Pago en el club el día de la clase: efectivo, tarjeta o Bizum.'
+  },
+
+  /* ---------- NEWSLETTER (la lista se guarda en Supabase) ----------
+     Se copian de Supabase → Project Settings: la URL está en «Data API»
+     y la clave en «API Keys».
+     La clave "publishable" es pública: está pensada para ir en la web.
+     ¡NUNCA pongas aquí la clave "secret" (ni la antigua "service_role")!
+     Si se dejan vacíos, el formulario avisa de que aún no está conectado. */
+  newsletter: {
+    supabaseUrl: 'https://toijxouffosimmcxntyu.supabase.co',          // Project URL (sin /rest/v1)
+    supabaseClave: 'sb_publishable_DUwE_ZJEgfIIxxAv2dzFBg_z-Lo-mTx'   // clave publishable (es pública)
   }
 };

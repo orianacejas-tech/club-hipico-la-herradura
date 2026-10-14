@@ -27,6 +27,7 @@
   <script src="js/datos.js" defer></script>
   <script src="js/utilidades.js" defer></script>
   <script src="js/reservas.js" defer></script>
+  <script src="js/newsletter.js" defer></script>
   <script src="js/principal.js" defer></script>
 </head>
 <body>
@@ -126,6 +127,7 @@
             </a>
           </li>
           <li><a class="enlace-lateral" href="#excursiones">Excursiones a caballo</a></li>
+          <li><a class="enlace-lateral" href="#newsletter">Newsletter <span class="etiqueta-mini">Nuevo</span></a></li>
           <li class="grupo__subtitulo" aria-hidden="true">Conócenos</li>
           <li><a class="enlace-lateral" href="#historia">Nuestra historia</a></li>
           <li><a class="enlace-lateral" href="#equipo">Quiénes somos</a></li>
@@ -249,6 +251,17 @@
             <a class="boton boton--secundario" href="#contacto">Contacto y cómo llegar</a>
           </div>
         </div>
+      </section>
+
+      <!-- Invitación a la newsletter -->
+      <section class="newsletter-banda" aria-labelledby="t-banda-newsletter">
+        <svg class="icono newsletter-banda__icono" aria-hidden="true"><use href="#i-email"></use></svg>
+        <div>
+          <p class="antetitulo">Newsletter del club</p>
+          <h2 id="t-banda-newsletter">Entérate antes que nadie</h2>
+          <p>Un correo al mes con las ofertas de bonos, las rutas de temporada y la vida en las cuadras.</p>
+        </div>
+        <a class="boton boton--claro boton--grande" href="#newsletter">Suscribirme</a>
       </section>
     </section>
 
@@ -796,6 +809,90 @@
       <div id="mis-reservas-contenido"></div>
     </section>
 
+    <!-- ===================== PÁGINA: NEWSLETTER ===================== -->
+    <!-- Los emails se guardan en Supabase (ver js/newsletter.js y supabase/newsletter.sql) -->
+    <section class="pagina" id="newsletter" data-titulo="Newsletter" aria-labelledby="t-newsletter">
+      <header class="cabecera-pagina">
+        <p class="antetitulo">Novedades del club</p>
+        <h1 id="t-newsletter">Newsletter de La Herradura</h1>
+        <p class="entradilla">Un correo al mes con lo que pasa en el club: ofertas de bonos, nuevas rutas, concursos y la vida en las cuadras. Sin spam, y te das de baja cuando quieras.</p>
+      </header>
+
+      <div class="rejilla rejilla--2">
+        <section class="tarjeta tarjeta--cosida tarjeta--info" aria-labelledby="t-suscribete">
+          <h2 id="t-suscribete">Suscríbete</h2>
+          <form class="formulario formulario--simple" id="form-newsletter" novalidate>
+            <div class="campos-dobles">
+              <div class="campo">
+                <label for="n-nombre">Nombre <span class="opcional">(opcional)</span></label>
+                <input type="text" id="n-nombre" autocomplete="given-name" maxlength="80">
+              </div>
+              <div class="campo">
+                <label for="n-email">Email</label>
+                <input type="email" id="n-email" autocomplete="email" maxlength="254" aria-describedby="en-email">
+                <p class="campo__error" id="en-email"></p>
+              </div>
+            </div>
+            <fieldset class="campo">
+              <legend>¿Qué te interesa? <span class="opcional">(opcional)</span></legend>
+              <div class="opciones opciones--temas">
+                <label class="opcion"><input type="checkbox" name="tema" value="clases"><span class="opcion__titulo">Clases y bonos</span></label>
+                <label class="opcion"><input type="checkbox" name="tema" value="pupilaje"><span class="opcion__titulo">Pupilaje</span></label>
+                <label class="opcion"><input type="checkbox" name="tema" value="rutas"><span class="opcion__titulo">Rutas y excursiones</span></label>
+                <label class="opcion"><input type="checkbox" name="tema" value="eventos"><span class="opcion__titulo">Concursos y eventos</span></label>
+              </div>
+            </fieldset>
+            <!-- Campo trampa contra robots: las personas no lo ven -->
+            <div class="campo-trampa" aria-hidden="true">
+              <label for="n-web">No rellenes este campo</label>
+              <input type="text" id="n-web" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="campo campo--casilla">
+              <input type="checkbox" id="n-privacidad" aria-describedby="en-privacidad">
+              <label for="n-privacidad">Quiero recibir la newsletter y acepto la <a href="#privacidad">política de privacidad</a>.</label>
+              <p class="campo__error" id="en-privacidad"></p>
+            </div>
+            <div class="acciones">
+              <button class="boton boton--primario" type="submit">
+                <svg class="icono" aria-hidden="true"><use href="#i-email"></use></svg><span>Suscribirme</span>
+              </button>
+            </div>
+            <p class="aviso aviso--ok" id="n-estado" role="status" tabindex="-1" hidden></p>
+          </form>
+        </section>
+
+        <section class="tarjeta tarjeta--cosida tarjeta--info newsletter-ventajas" aria-labelledby="t-recibiras">
+          <h2 id="t-recibiras">Qué vas a recibir</h2>
+          <ul class="lista-check">
+            <li>Las ofertas de bonos y las promociones, antes que nadie.</li>
+            <li>Las nuevas rutas y excursiones de cada temporada.</li>
+            <li>Concursos, exhibiciones y jornadas de puertas abiertas.</li>
+            <li>Consejos para cuidar a tu caballo y noticias de las cuadras.</li>
+          </ul>
+          <p class="nota">Como mucho, un correo al mes. Tu email solo se usa para la newsletter y no se comparte con nadie.</p>
+          <figure class="foto"><img src="img/excursion-atardecer.jpg" alt="" loading="lazy"></figure>
+        </section>
+      </div>
+
+      <section class="bloque" id="baja" aria-labelledby="t-baja">
+        <div class="tarjeta tarjeta--info tarjeta--estrecha">
+          <h2 id="t-baja">Darse de baja</h2>
+          <p>Escribe el email con el que te suscribiste y lo borraremos de la lista.</p>
+          <form class="formulario formulario--simple" id="form-baja" novalidate>
+            <div class="campo">
+              <label for="b-email">Email</label>
+              <input type="email" id="b-email" autocomplete="email" maxlength="254" aria-describedby="eb-email">
+              <p class="campo__error" id="eb-email"></p>
+            </div>
+            <div class="acciones">
+              <button class="boton boton--secundario" type="submit"><span>Darme de baja</span></button>
+            </div>
+            <p class="aviso aviso--ok" id="b-estado" role="status" tabindex="-1" hidden></p>
+          </form>
+        </div>
+      </section>
+    </section>
+
     <!-- ===================== PÁGINA: CONTACTO ===================== -->
     <section class="pagina" id="contacto" data-titulo="Contacto" aria-labelledby="t-contacto">
       <header class="cabecera-pagina">
@@ -884,8 +981,13 @@
         <p>Cuando pulsas «Enviar por WhatsApp» o «Enviar por email», se abre tu aplicación con el mensaje ya escrito y eres tú quien decide enviarlo. A partir de ese momento el club recibe tus datos (nombre, edad, teléfono, email y observaciones) y solo los usa para gestionar tu reserva.</p>
         <p>Puedes borrar todos tus datos cuando quieras desde «Mis reservas», con el botón «Borrar mis datos de este navegador».</p>
 
+        <h2>Newsletter</h2>
+        <p>Si te suscribes a la newsletter, guardamos tu email, tu nombre (si lo escribes), los temas que elijas y la fecha en que te apuntaste. Se guardan en una base de datos de <strong>Supabase</strong> y solo se usan para enviarte la newsletter: no se comparten con nadie.</p>
+        <p>Puedes darte de baja cuando quieras en la página <a href="#baja">Newsletter → Darse de baja</a>. Al hacerlo, tu email se borra de la lista.</p>
+        <p>Como esta es una web de ejemplo, por ahora no se envía ningún correo de verdad.</p>
+
         <h2>Servicios de terceros</h2>
-        <p>La web usa las tipografías de Google Fonts y un mapa de Google Maps, que se cargan desde los servidores de Google.</p>
+        <p>La web usa las tipografías de Google Fonts y un mapa de Google Maps, que se cargan desde los servidores de Google. La lista de la newsletter se guarda en Supabase.</p>
 
         <h2>Créditos de las fotografías</h2>
         <p>Todas las fotografías tienen licencia libre y proceden de Wikimedia Commons. Se han redimensionado (y algunas recortado) para la web; las que tienen licencia CC BY-SA se comparten con la misma licencia. Puedes ver el detalle en <code>img/CREDITOS.txt</code>.</p>
@@ -935,6 +1037,11 @@
           </span>
         </a>
         <p class="pie__lema">Escuela de equitación, pupilaje y rutas a caballo en plena sierra desde 1987.</p>
+        <h2 class="pie__titulo pie__titulo--newsletter">Newsletter</h2>
+        <p class="pie__texto">Ofertas, rutas de temporada y novedades del club, una vez al mes.</p>
+        <a class="boton boton--claro boton--peq" href="#newsletter">
+          <svg class="icono" aria-hidden="true"><use href="#i-email"></use></svg>Suscribirme
+        </a>
       </div>
       <div>
         <h2 class="pie__titulo">Contacto</h2>
