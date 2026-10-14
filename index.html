@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Club Hípico La Herradura · Escuela de equitación, pupilaje y rutas a caballo</title>
+  <meta name="description" content="Club Hípico La Herradura: clases de equitación para niños y adultos, doma clásica, salto, bonos de 5 clases, pupilaje de caballos y rutas a caballo por la sierra. Reserva tu clase online.">
+  <meta name="theme-color" content="#3B2A1E">
+  <link rel="icon" href="img/logo-herradura.svg" type="image/svg+xml">
+
+  <!-- Tipografías de Google Fonts (sin internet se usan las del sistema) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700;800&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;display=swap">
+
+  <link rel="stylesheet" href="css/estilos.css">
+
+  <script>
+    // Hay JavaScript: las páginas se muestran de una en una
+    document.documentElement.classList.add('js');
+    // Si una foto no carga, se muestra un marco de "Foto pendiente" en su lugar
+    document.addEventListener('error', function (evento) {
+      var imagen = evento.target;
+      if (imagen.tagName === 'IMG' && imagen.closest('.foto')) imagen.closest('.foto').classList.add('foto--sin-imagen');
+    }, true);
+  </script>
+  <script src="js/datos.js" defer></script>
+  <script src="js/utilidades.js" defer></script>
+  <script src="js/reservas.js" defer></script>
+  <script src="js/principal.js" defer></script>
+</head>
+<body>
+
+  <!-- ================= ICONOS (se usan así: <svg><use href="#i-nombre"></use></svg>) ================= -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-herradura" viewBox="0 0 64 64">
+      <path fill="currentColor" stroke="none" fill-rule="evenodd" d="M11 56C8 48 7 38 8 28A24 24 0 0 1 56 28C57 38 56 48 53 56H44C46 48 46.5 39 46 30A14 14 0 0 0 18 30C17.5 39 18 48 20 56Z M10.9 41.5a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z M12.55 22.5a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z M18.2 14.45a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z M42.6 14.45a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z M48.25 22.5a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z M49.9 41.5a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z"/>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-cerrar" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-abajo" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-izquierda" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-derecha" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-telefono" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.2c-.4 0-.9.5-.9 1.3 0 1.5 1.6 3.9 3.9 5 .9.4 1.5.4 1.9.1.4-.3.6-.7.5-1l-1.3-.7c-.3-.1-.5 0-.7.3l-.3.4c-.9-.4-1.7-1.2-2.1-2.1l.4-.3c.3-.2.4-.4.3-.7L10 9c-.2-.5-.6-.8-1-.8z"/></symbol>
+    <symbol id="i-email" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></symbol>
+    <symbol id="i-ubicacion" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-calendario" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-copiar" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-lista" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="i-papelera" viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+    <symbol id="i-externo" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+    <symbol id="i-cuadra" viewBox="0 0 24 24"><path d="M3 10.5 12 4l9 6.5V21H3z"/><path d="M8 21v-7h8v7M8 14l8 7M16 14l-8 7"/></symbol>
+    <symbol id="i-pista" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><rect x="6.5" y="9" width="11" height="6" rx="3"/></symbol>
+    <symbol id="i-techo" viewBox="0 0 24 24"><path d="M2 11 12 5l10 6"/><path d="M4 10v10M20 10v10M2 20h20M9 20v-4h6v4"/></symbol>
+    <symbol id="i-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></symbol>
+    <symbol id="i-premio" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.2 7 22l5-3 5 3-1.2-8.8"/></symbol>
+    <symbol id="i-hoja" viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8 2 22M17.5 15H9"/></symbol>
+    <symbol id="i-gota" viewBox="0 0 24 24"><path d="M12 2.7 17.7 8.3a8 8 0 1 1-11.3 0z"/></symbol>
+    <symbol id="i-llave" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m11.4 11.6 9.1-9.1M15.5 7.5l3 3M18 5l2.5 2.5"/></symbol>
+    <symbol id="i-cafe" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><path d="M6 1v3M10 1v3M14 1v3"/></symbol>
+    <symbol id="i-aparcamiento" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></symbol>
+    <symbol id="i-camara" viewBox="0 0 24 24"><path d="m23 7-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></symbol>
+    <symbol id="i-cruz" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 7.5v9M7.5 12h9"/></symbol>
+    <symbol id="i-camion" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></symbol>
+    <symbol id="i-corazon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+    <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="i-personas" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-mapa" viewBox="0 0 24 24"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16M16 6v16"/></symbol>
+    <symbol id="i-lupa" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></symbol>
+  </svg>
+
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- ================= BARRA SUPERIOR (solo en el móvil) ================= -->
+  <header class="barra-movil" id="barra-movil">
+    <button class="barra-movil__menu" id="boton-menu" type="button" aria-controls="lateral" aria-expanded="false">
+      <svg class="icono" aria-hidden="true"><use href="#i-menu"></use></svg>
+      <span class="solo-lectores">Abrir el menú</span>
+    </button>
+    <a class="marca marca--compacta" href="#inicio">
+      <svg class="marca__icono" aria-hidden="true"><use href="#i-herradura"></use></svg>
+      <span class="marca__nombre">La Herradura</span>
+    </a>
+    <a class="boton boton--primario boton--peq" href="#reservas">Reservar</a>
+  </header>
+
+  <div class="velo" id="velo" hidden></div>
+
+  <!-- ================= MENÚ LATERAL IZQUIERDO (3 desplegables) ================= -->
+  <aside class="lateral" id="lateral" aria-label="Menú lateral">
+    <div class="lateral__cabecera">
+      <a class="marca" href="#inicio">
+        <svg class="marca__icono" aria-hidden="true"><use href="#i-herradura"></use></svg>
+        <span class="marca__texto">
+          <span class="marca__antetitulo">Club Hípico</span>
+          <span class="marca__nombre">La Herradura</span>
+        </span>
+      </a>
+      <button class="lateral__cerrar" id="boton-cerrar-menu" type="button">
+        <svg class="icono" aria-hidden="true"><use href="#i-cerrar"></use></svg>
+        <span class="solo-lectores">Cerrar el menú</span>
+      </button>
+    </div>
+
+    <!-- Desplegable 1: categorías de la web -->
+    <nav aria-label="Secciones del club">
+      <details class="grupo" open>
+        <summary class="grupo__titulo">
+          <svg class="icono" aria-hidden="true"><use href="#i-herradura"></use></svg>
+          <span>Menú</span>
+          <svg class="icono grupo__flecha" aria-hidden="true"><use href="#i-abajo"></use></svg>
+        </summary>
+        <ul class="grupo__lista">
+          <li><a class="enlace-lateral" href="#inicio">Inicio</a></li>
+          <li><a class="enlace-lateral" href="#clases">Clases y tarifas</a></li>
+          <li><a class="enlace-lateral" href="#bonos">Bonos y ofertas <span class="etiqueta-mini">Oferta</span></a></li>
+          <li>
+            <a class="enlace-lateral" href="#pupilaje">
+              <span><span class="enlace-lateral__titulo">Pupilaje</span><span class="enlace-lateral__sub">Guardería de caballos</span></span>
+            </a>
+          </li>
+          <li><a class="enlace-lateral" href="#excursiones">Excursiones a caballo</a></li>
+          <li class="grupo__subtitulo" aria-hidden="true">Conócenos</li>
+          <li><a class="enlace-lateral" href="#historia">Nuestra historia</a></li>
+          <li><a class="enlace-lateral" href="#equipo">Quiénes somos</a></li>
+          <li><a class="enlace-lateral" href="#instalaciones">Instalaciones y cuadras</a></li>
+        </ul>
+      </details>
+    </nav>
+
+    <!-- Desplegable 2: reservas online (los enlaces se crean desde js/datos.js) -->
+    <nav aria-label="Reservas online">
+      <details class="grupo grupo--reservas">
+        <summary class="grupo__titulo">
+          <svg class="icono" aria-hidden="true"><use href="#i-calendario"></use></svg>
+          <span>Reserva tu clase online</span>
+          <svg class="icono grupo__flecha" aria-hidden="true"><use href="#i-abajo"></use></svg>
+        </summary>
+        <ul class="grupo__lista" id="menu-reservas"></ul>
+      </details>
+    </nav>
+
+    <!-- Desplegable 3: contacto (los datos se crean desde js/datos.js) -->
+    <details class="grupo grupo--contacto">
+      <summary class="grupo__titulo">
+        <svg class="icono" aria-hidden="true"><use href="#i-telefono"></use></svg>
+        <span>Contacto</span>
+        <svg class="icono grupo__flecha" aria-hidden="true"><use href="#i-abajo"></use></svg>
+      </summary>
+      <ul class="grupo__lista" id="menu-contacto"></ul>
+    </details>
+
+    <p class="lateral__lema">Desde 1987 entre caballos, en plena sierra.</p>
+  </aside>
+
+  <!-- ================= CONTENIDO ================= -->
+  <main class="contenido" id="contenido" tabindex="-1">
+    <noscript><p class="aviso">Activa JavaScript para ver los precios y reservar online.</p></noscript>
+
+    <!-- ===================== PÁGINA: INICIO ===================== -->
+    <section class="pagina" id="inicio" data-titulo="Inicio" aria-labelledby="t-inicio">
+      <div class="portada">
+        <figure class="foto portada__foto">
+          <img src="img/portada-caballos-prado.jpg" alt="Caballos pastando junto a una cerca de madera al amanecer">
+        </figure>
+        <div class="portada__texto">
+          <p class="antetitulo">Escuela de equitación · Pupilaje · Rutas a caballo</p>
+          <h1 id="t-inicio">Club Hípico La Herradura</h1>
+          <p class="portada__lema">Desde 1987 compartiendo la pasión por los caballos en plena sierra: clases para todas las edades, cuidado de tu caballo y rutas por el campo.</p>
+          <div class="acciones">
+            <a class="boton boton--primario boton--grande" href="#reservas">
+              <svg class="icono" aria-hidden="true"><use href="#i-calendario"></use></svg>Reserva tu clase
+            </a>
+            <a class="boton boton--claro boton--grande" href="#clases">Ver clases y precios</a>
+          </div>
+        </div>
+      </div>
+
+      <ul class="cifras" aria-label="El club en cifras">
+        <li><strong>1987</strong><span>año de fundación</span></li>
+        <li><strong>24</strong><span>caballos y ponis de escuela</span></li>
+        <li><strong>40</strong><span>boxes de pupilaje</span></li>
+        <li><strong>15 ha</strong><span>de finca en la sierra</span></li>
+      </ul>
+
+      <section class="bloque" aria-labelledby="t-ofrecemos">
+        <div class="titulo-seccion">
+          <p class="antetitulo">Bienvenido al club</p>
+          <h2 id="t-ofrecemos">Qué te ofrecemos</h2>
+        </div>
+        <div class="rejilla rejilla--4">
+          <a class="tarjeta tarjeta--enlace" href="#clases">
+            <figure class="foto"><img src="img/clase-iniciacion-infantil.jpg" alt="" loading="lazy"></figure>
+            <div class="tarjeta__cuerpo">
+              <h3>Clases para todas las edades</h3>
+              <p>Iniciación infantil, equitación avanzada, doma clásica y salto, con profesores titulados.</p>
+              <span class="enlace-flecha">Ver clases y precios <svg class="icono" aria-hidden="true"><use href="#i-flecha"></use></svg></span>
+            </div>
+          </a>
+          <a class="tarjeta tarjeta--enlace" href="#pupilaje">
+            <figure class="foto"><img src="img/pupilaje-boxes.jpg" alt="" loading="lazy"></figure>
+            <div class="tarjeta__cuerpo">
+              <h3>Pupilaje</h3>
+              <p>La guardería de tu caballo: alojamiento, comida, cuidados y trabajo diario.</p>
+              <span class="enlace-flecha">Ver planes de pupilaje <svg class="icono" aria-hidden="true"><use href="#i-flecha"></use></svg></span>
+            </div>
+          </a>
+          <a class="tarjeta tarjeta--enlace" href="#excursiones">
+            <figure class="foto"><img src="img/excursion-ruta-campo.jpg" alt="" loading="lazy"></figure>
+            <div class="tarjeta__cuerpo">
+              <h3>Excursiones a caballo</h3>
+              <p>Paseos y rutas guiadas por la sierra, desde una hora hasta un día completo.</p>
+              <span class="enlace-flecha">Ver rutas <svg class="icono" aria-hidden="true"><use href="#i-flecha"></use></svg></span>
+            </div>
+          </a>
+          <a class="tarjeta tarjeta--enlace" href="#instalaciones">
+            <figure class="foto"><img src="img/instalaciones-pista-exterior.jpg" alt="" loading="lazy"></figure>
+            <div class="tarjeta__cuerpo">
+              <h3>Nuestras instalaciones</h3>
+              <p>Cuadras amplias, picadero cubierto, pistas de arena y paddocks con sombra.</p>
+              <span class="enlace-flecha">Ver fotos <svg class="icono" aria-hidden="true"><use href="#i-flecha"></use></svg></span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Oferta del bono (se rellena desde js/datos.js) -->
+      <div id="oferta-inicio"></div>
+
+      <section class="bloque bloque--dos-columnas" aria-labelledby="t-familiar">
+        <div>
+          <p class="antetitulo">El club</p>
+          <h2 id="t-familiar">Un club familiar, con los caballos en el centro</h2>
+          <p>En La Herradura llevamos casi cuarenta años enseñando a montar a caballo a niños y adultos. Somos un club pequeño y cercano: aquí todos se conocen, los alumnos, las familias y, por supuesto, los caballos.</p>
+          <p>Trabajamos en grupos reducidos, con profesores titulados y caballos de escuela tranquilos, sanos y bien cuidados. Porque para nosotros lo primero es el bienestar del caballo… y lo segundo, que disfrutes.</p>
+          <a class="enlace-flecha" href="#historia">Conoce nuestra historia <svg class="icono" aria-hidden="true"><use href="#i-flecha"></use></svg></a>
+        </div>
+        <div class="tarjeta tarjeta--cosida tarjeta--info">
+          <h3><svg class="icono" aria-hidden="true"><use href="#i-reloj"></use></svg> Horario del club</h3>
+          <dl class="horario" data-horario></dl>
+          <div class="acciones">
+            <a class="boton boton--primario" href="#reservas">Reservar online</a>
+            <a class="boton boton--secundario" href="#contacto">Contacto y cómo llegar</a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ===================== PÁGINA: CLASES Y TARIFAS ===================== -->
+    <section class="pagina" id="clases" data-titulo="Clases y tarifas" aria-labelledby="t-clases">
+      <header class="cabecera-pagina">
+        <p class="antetitulo">Escuela de equitación</p>
+        <h1 id="t-clases">Clases y tarifas</h1>
+        <p class="entradilla">Clases en grupos reducidos con profesores titulados, para todas las edades y niveles. Todos los precios incluyen el caballo o poni de la escuela, el casco y el seguro de accidentes.</p>
+        <nav class="indice" aria-label="En esta página">
+          <a href="#tarifas">Tabla de precios</a>
+          <a href="#bonos">Bonos de 5 clases</a>
+          <a href="#horarios">Horarios</a>
+        </nav>
+      </header>
+
+      <!-- Tarjetas de las 4 clases (se rellenan desde js/datos.js) -->
+      <div class="rejilla rejilla--clases" id="tarjetas-clases"></div>
+
+      <section class="bloque" id="tarifas" aria-labelledby="t-tarifas">
+        <h2 id="t-tarifas">Tabla de precios</h2>
+        <div class="tabla-desplazable" id="tabla-precios" tabindex="0" role="region" aria-labelledby="t-tarifas"></div>
+        <p class="nota">Precios orientativos con IVA incluido. ¿Eres adulto y nunca has montado? Llámanos y te preparamos unas clases de iniciación a tu medida.</p>
+      </section>
+
+      <section class="bloque bloque--oferta" id="bonos" aria-labelledby="t-bonos">
+        <div class="oferta-cabecera">
+          <span class="etiqueta-oferta">Oferta</span>
+          <h2 id="t-bonos">Bonos de 5 clases</h2>
+          <p>Compra un bono de 5 clases y cada clase te sale más barata. Lo compras al reservar tu primera clase y lo pagas en el club.</p>
+        </div>
+        <div class="rejilla rejilla--4" id="tarjetas-bonos"></div>
+        <div class="bono-condiciones">
+          <h3>Condiciones de los bonos</h3>
+          <ul class="lista-check" id="condiciones-bonos"></ul>
+        </div>
+      </section>
+
+      <section class="bloque" id="horarios" aria-labelledby="t-horarios">
+        <h2 id="t-horarios">Horarios de clases y rutas</h2>
+        <div class="tabla-desplazable" id="tabla-horarios" tabindex="0" role="region" aria-labelledby="t-horarios"></div>
+        <p class="nota">Los lunes el club está cerrado: es el día de descanso de los caballos.</p>
+      </section>
+
+      <section class="bloque" aria-labelledby="t-antes">
+        <h2 id="t-antes">Antes de tu primera clase</h2>
+        <ul class="rejilla rejilla--3 caracteristicas">
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-personas"></use></svg>
+            <div><h3>Ropa cómoda</h3><p>Pantalón largo y elástico, y calzado con un poco de tacón. Nada de zapatillas de deporte.</p></div>
+          </li>
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-escudo"></use></svg>
+            <div><h3>Casco obligatorio</h3><p>Si no tienes, te prestamos uno de tu talla sin coste.</p></div>
+          </li>
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-reloj"></use></svg>
+            <div><h3>Llega 15 minutos antes</h3><p>Así preparas el caballo con tu profesor y empiezas la clase con calma.</p></div>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ===================== PÁGINA: PUPILAJE ===================== -->
+    <section class="pagina" id="pupilaje" data-titulo="Pupilaje" aria-labelledby="t-pupilaje">
+      <header class="cabecera-pagina cabecera-pagina--foto">
+        <div>
+          <p class="antetitulo">Guardería de caballos</p>
+          <h1 id="t-pupilaje">Pupilaje: la casa de tu caballo</h1>
+          <p class="entradilla">¿Tienes caballo y necesitas un sitio donde lo cuiden como en casa? El pupilaje es nuestra «guardería de equinos»: lo alojamos, lo alimentamos y lo mantenemos sano y en forma mientras tú no estás.</p>
+        </div>
+        <figure class="foto"><img src="img/instalaciones-cuadra-exterior.jpg" alt="Antiguo establo de piedra entre grandes árboles, iluminado por el sol del amanecer" loading="lazy"></figure>
+      </header>
+
+      <!-- Planes de pupilaje (se rellenan desde js/datos.js) -->
+      <div class="rejilla rejilla--3" id="planes-pupilaje"></div>
+
+      <section class="bloque" aria-labelledby="t-incluido">
+        <h2 id="t-incluido">Incluido en todos los planes</h2>
+        <ul class="rejilla rejilla--3 caracteristicas">
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-camara"></use></svg>
+            <div><h3>Vigilancia 24 horas</h3><p>Cámaras en cuadras y paddocks, y un responsable que vive en la finca.</p></div>
+          </li>
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-cruz"></use></svg>
+            <div><h3>Veterinario de urgencias</h3><p>Servicio concertado disponible los 365 días del año.</p></div>
+          </li>
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-pista"></use></svg>
+            <div><h3>Pistas y picadero cubierto</h3><p>Para que puedas montar a tu caballo haga el tiempo que haga.</p></div>
+          </li>
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-llave"></use></svg>
+            <div><h3>Guadarnés con taquilla</h3><p>Tu montura y tu equipo, ordenados y bajo llave.</p></div>
+          </li>
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-gota"></use></svg>
+            <div><h3>Duchas con agua caliente</h3><p>Y zona de secado para después del trabajo.</p></div>
+          </li>
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-camion"></use></svg>
+            <div><h3>Acceso para remolques</h3><p>Aparcamiento amplio para camiones y remolques de caballos.</p></div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="bloque" aria-labelledby="t-extras">
+        <h2 id="t-extras">Servicios extra</h2>
+        <div class="tabla-desplazable tabla-desplazable--estrecha" id="tabla-extras" tabindex="0" role="region" aria-labelledby="t-extras"></div>
+        <p class="nota" id="nota-pupilaje"></p>
+      </section>
+
+      <section class="bloque" aria-labelledby="t-como-empezar">
+        <h2 id="t-como-empezar">Cómo empezar</h2>
+        <ol class="pasos">
+          <li><h3>Visita el club</h3><p>Ven a ver las cuadras y te enseñamos los boxes y paddocks libres.</p></li>
+          <li><h3>Documentación</h3><p>Pasaporte del caballo, vacunas al día y seguro de responsabilidad civil.</p></li>
+          <li><h3>Adaptación</h3><p>Los primeros días vigilamos cómo come, descansa y se relaciona con los demás caballos.</p></li>
+        </ol>
+        <a class="boton boton--primario boton--grande" href="#contacto?asunto=pupilaje">Pedir información o una visita</a>
+      </section>
+    </section>
+
+    <!-- ===================== PÁGINA: EXCURSIONES ===================== -->
+    <section class="pagina" id="excursiones" data-titulo="Excursiones a caballo" aria-labelledby="t-excursiones">
+      <header class="cabecera-pagina cabecera-pagina--foto">
+        <div>
+          <p class="antetitulo">Rutas a caballo</p>
+          <h1 id="t-excursiones">Excursiones a caballo</h1>
+          <p class="entradilla">Descubre la sierra desde el mejor punto de vista: a lomos de un caballo. Rutas guiadas para todos los niveles, desde un paseo tranquilo de una hora hasta una jornada completa con comida en el campo.</p>
+        </div>
+        <figure class="foto"><img src="img/caballo-rocio.jpg" alt="Caballo castaño en un prado de montaña, con pinos y cumbres al fondo" loading="lazy"></figure>
+      </header>
+
+      <!-- Tarjetas de las rutas (se rellenan desde js/datos.js) -->
+      <div class="rejilla rejilla--rutas" id="tarjetas-rutas"></div>
+
+      <div class="bloque rejilla rejilla--2">
+        <section class="tarjeta tarjeta--cosida tarjeta--info" aria-labelledby="t-llevar">
+          <h2 id="t-llevar">Qué llevar</h2>
+          <ul class="lista-check">
+            <li>Pantalón largo cómodo y calzado con algo de tacón.</li>
+            <li>Gorra y crema solar en verano; ropa de abrigo en invierno.</li>
+            <li>Una botella de agua (en la ruta de día completo te damos la comida).</li>
+            <li>El casco te lo prestamos nosotros.</li>
+          </ul>
+        </section>
+        <section class="tarjeta tarjeta--cosida tarjeta--info" aria-labelledby="t-saber">
+          <h2 id="t-saber">Conviene saber</h2>
+          <ul class="lista-check">
+            <li>Grupos reducidos, siempre con guía ecuestre titulado.</li>
+            <li>Si llueve fuerte o hay alerta por calor, cambiamos la fecha sin coste.</li>
+            <li>¿Sois un grupo grande, una familia o una empresa? <a href="#contacto?asunto=excursiones">Escríbenos</a> y organizamos una ruta a medida.</li>
+            <li>Peso máximo del jinete: 100 kg, por el bienestar de los caballos.</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== PÁGINA: HISTORIA ===================== -->
+    <section class="pagina" id="historia" data-titulo="Nuestra historia" aria-labelledby="t-historia">
+      <header class="cabecera-pagina cabecera-pagina--foto">
+        <div>
+          <p class="antetitulo">Conócenos</p>
+          <h1 id="t-historia">Nuestra historia</h1>
+          <p class="entradilla">Casi cuarenta años de caballos, familias y sierra.</p>
+        </div>
+        <figure class="foto"><img src="img/portada-caballos-prado.jpg" alt="Caballos pastando junto a una cerca de madera al amanecer" loading="lazy"></figure>
+      </header>
+
+      <div class="texto-largo">
+        <p>Todo empezó en 1987, cuando Carmen Ruiz y su padre, Antonio, decidieron convertir la vieja finca ganadera de la familia en una pequeña escuela de equitación. Tenían cuatro caballos, una pista de arena que habían nivelado a mano y muchas ganas de enseñar.</p>
+        <p>El nombre lo eligió la casualidad: al reformar la cuadra apareció una herradura antigua clavada en una viga. Antonio la colgó sobre la puerta de entrada «para que trajera suerte»… y allí sigue, recibiendo cada mañana a alumnos, caballos y familias.</p>
+        <p>Hoy La Herradura es un club con 24 caballos y ponis de escuela, 40 boxes de pupilaje y un equipo de profesionales que siguen la misma idea con la que empezó todo: <strong>primero, el bienestar del caballo</strong>.</p>
+      </div>
+
+      <div class="separador" aria-hidden="true"><svg class="separador__icono"><use href="#i-herradura"></use></svg></div>
+
+      <section class="bloque bloque--sin-margen" aria-labelledby="t-hitos">
+        <h2 id="t-hitos">Momentos importantes</h2>
+        <ol class="linea-tiempo">
+          <li>
+            <span class="linea-tiempo__anio">1987</span>
+            <div><h3>Nace la escuela</h3><p>Cuatro caballos, una pista de arena y las primeras clases para los niños del pueblo.</p></div>
+          </li>
+          <li>
+            <span class="linea-tiempo__anio">1994</span>
+            <div><h3>Primeras rutas por la sierra</h3><p>Marcamos los primeros senderos y empezamos a organizar rutas a caballo los fines de semana.</p></div>
+          </li>
+          <li>
+            <span class="linea-tiempo__anio">2003</span>
+            <div><h3>Picadero cubierto</h3><p>Construimos un picadero cubierto de 20 × 40 m para dar clase llueva o haga calor.</p></div>
+          </li>
+          <li>
+            <span class="linea-tiempo__anio">2011</span>
+            <div><h3>Doma clásica y salto</h3><p>La escuela se homologa como centro de enseñanza ecuestre y se incorporan las clases de doma clásica y de salto.</p></div>
+          </li>
+          <li>
+            <span class="linea-tiempo__anio">2018</span>
+            <div><h3>Nuevas cuadras</h3><p>Ampliamos el pupilaje hasta 40 boxes y abrimos seis paddocks con refugio.</p></div>
+          </li>
+          <li>
+            <span class="linea-tiempo__anio">2024</span>
+            <div><h3>Pista exterior renovada</h3><p>Nueva pista de arena de sílice de 40 × 80 m con riego automático.</p></div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="bloque" aria-labelledby="t-valores">
+        <h2 id="t-valores">Lo que nos importa</h2>
+        <ul class="rejilla rejilla--3 caracteristicas">
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-corazon"></use></svg>
+            <div><h3>Bienestar animal</h3><p>Caballos sanos, bien alimentados y con descanso: los lunes no se monta.</p></div>
+          </li>
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-escudo"></use></svg>
+            <div><h3>Seguridad</h3><p>Profesores titulados, material homologado y grupos reducidos.</p></div>
+          </li>
+          <li class="caracteristica">
+            <svg class="icono" aria-hidden="true"><use href="#i-personas"></use></svg>
+            <div><h3>Ambiente familiar</h3><p>Un club cercano, donde las familias pueden ver las clases desde la cafetería.</p></div>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ===================== PÁGINA: QUIÉNES SOMOS ===================== -->
+    <section class="pagina" id="equipo" data-titulo="Quiénes somos" aria-labelledby="t-equipo">
+      <header class="cabecera-pagina">
+        <p class="antetitulo">Conócenos</p>
+        <h1 id="t-equipo">Quiénes somos</h1>
+        <p class="entradilla">Un equipo pequeño, con muchos años de experiencia y una misma pasión. Y, por supuesto, nuestros caballos: los auténticos profesores.</p>
+      </header>
+
+      <section class="bloque bloque--sin-margen" aria-labelledby="t-personas">
+        <h2 id="t-personas">El equipo</h2>
+        <ul class="rejilla rejilla--3 personas">
+          <li class="tarjeta tarjeta--cosida persona">
+            <span class="avatar" aria-hidden="true">CR</span>
+            <h3>Carmen Ruiz</h3>
+            <p class="persona__cargo">Fundadora y directora · Profesora de doma clásica</p>
+            <p>Técnico Deportivo Superior en Hípica. Lleva más de 35 años enseñando y sigue dando clase cada día.</p>
+          </li>
+          <li class="tarjeta tarjeta--cosida persona">
+            <span class="avatar" aria-hidden="true">JM</span>
+            <h3>Javier Molina</h3>
+            <p class="persona__cargo">Profesor de salto</p>
+            <p>Técnico Deportivo en Hípica y jinete de concursos durante quince años. Experto en quitar el miedo a los obstáculos.</p>
+          </li>
+          <li class="tarjeta tarjeta--cosida persona">
+            <span class="avatar" aria-hidden="true">LF</span>
+            <h3>Lucía Fernández</h3>
+            <p class="persona__cargo">Monitora de iniciación infantil</p>
+            <p>Técnico Deportivo y maestra de Educación Infantil. Los más pequeños aprenden con ella jugando.</p>
+          </li>
+          <li class="tarjeta tarjeta--cosida persona">
+            <span class="avatar" aria-hidden="true">AG</span>
+            <h3>Andrés Gil</h3>
+            <p class="persona__cargo">Jefe de cuadras y pupilaje</p>
+            <p>Se encarga de que cada caballo coma, descanse y esté perfecto. Vive en la finca y conoce a todos por su nombre.</p>
+          </li>
+          <li class="tarjeta tarjeta--cosida persona">
+            <span class="avatar" aria-hidden="true">MO</span>
+            <h3>Marta Ortega</h3>
+            <p class="persona__cargo">Guía de rutas a caballo</p>
+            <p>Guía ecuestre titulada. Conoce cada sendero, arroyo y mirador de la sierra.</p>
+          </li>
+          <li class="tarjeta tarjeta--cosida persona">
+            <span class="avatar" aria-hidden="true">ES</span>
+            <h3>Elena Sanz</h3>
+            <p class="persona__cargo">Veterinaria colaboradora</p>
+            <p>Revisa a todos los caballos cada semana y atiende las urgencias los 365 días del año.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="bloque" aria-labelledby="t-caballos">
+        <h2 id="t-caballos">Nuestros caballos</h2>
+        <p>En la escuela tenemos 24 caballos y ponis. Te presentamos a algunos de los más queridos:</p>
+        <ul class="rejilla rejilla--4 caballos">
+          <li class="tarjeta caballo">
+            <figure class="foto foto--cuadrada"><img src="img/caballo-canela.jpg" alt="Canela, poni alazán de crines rubias" loading="lazy"></figure>
+            <div class="tarjeta__cuerpo">
+              <h3>Canela</h3>
+              <p class="caballo__ficha">Poni alazán · 14 años</p>
+              <p>La favorita de los peques: paciente, cariñosa y siempre dispuesta.</p>
+              <p class="etiqueta">Iniciación infantil</p>
+            </div>
+          </li>
+          <li class="tarjeta caballo">
+            <figure class="foto foto--cuadrada"><img src="img/caballo-bombon.jpg" alt="Bombón, poni shetland pío blanco y negro" loading="lazy"></figure>
+            <div class="tarjeta__cuerpo">
+              <h3>Bombón</h3>
+              <p class="caballo__ficha">Poni shetland · 11 años</p>
+              <p>Pequeño pero con mucho carácter. Ideal para los primeros pasos de los más pequeños.</p>
+              <p class="etiqueta">Iniciación infantil</p>
+            </div>
+          </li>
+          <li class="tarjeta caballo">
+            <figure class="foto foto--cuadrada"><img src="img/caballo-lucero.jpg" alt="Lucero, caballo andaluz blanco" loading="lazy"></figure>
+            <div class="tarjeta__cuerpo">
+              <h3>Lucero</h3>
+              <p class="caballo__ficha">Pura raza española, tordo · 12 años</p>
+              <p>Elegante y muy obediente: el maestro de nuestras clases de doma.</p>
+              <p class="etiqueta">Doma clásica</p>
+            </div>
+          </li>
+          <li class="tarjeta caballo">
+            <figure class="foto foto--cuadrada"><img src="img/caballo-rocio.jpg" alt="Rocío, yegua castaña de crines negras en un prado de montaña" loading="lazy"></figure>
+            <div class="tarjeta__cuerpo">
+              <h3>Rocío</h3>
+              <p class="caballo__ficha">Yegua castaña · 9 años</p>
+              <p>Valiente y ágil; le encanta saltar y salir al campo.</p>
+              <p class="etiqueta">Salto y rutas</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ===================== PÁGINA: INSTALACIONES ===================== -->
+    <section class="pagina" id="instalaciones" data-titulo="Instalaciones y cuadras" aria-labelledby="t-instalaciones">
+      <header class="cabecera-pagina">
+        <p class="antetitulo">Conócenos</p>
+        <h1 id="t-instalaciones">Instalaciones y cuadras</h1>
+        <p class="entradilla">Quince hectáreas en plena sierra, pensadas para que caballos y jinetes estén cómodos y seguros en cualquier época del año.</p>
+      </header>
+
+      <ul class="rejilla rejilla--3 caracteristicas">
+        <li class="caracteristica">
+          <svg class="icono" aria-hidden="true"><use href="#i-cuadra"></use></svg>
+          <div><h3>40 boxes amplios</h3><p>De 3,5 × 3,5 m, ventilados y con cama de viruta limpia cada día.</p></div>
+        </li>
+        <li class="caracteristica">
+          <svg class="icono" aria-hidden="true"><use href="#i-techo"></use></svg>
+          <div><h3>Picadero cubierto</h3><p>De 20 × 40 m, con luz para las clases de tarde en invierno.</p></div>
+        </li>
+        <li class="caracteristica">
+          <svg class="icono" aria-hidden="true"><use href="#i-sol"></use></svg>
+          <div><h3>Pista exterior</h3><p>Arena de sílice de 40 × 80 m con riego automático para que no haya polvo.</p></div>
+        </li>
+        <li class="caracteristica">
+          <svg class="icono" aria-hidden="true"><use href="#i-premio"></use></svg>
+          <div><h3>Pista de doma</h3><p>De 20 × 60 m, con letras reglamentarias y espejos.</p></div>
+        </li>
+        <li class="caracteristica">
+          <svg class="icono" aria-hidden="true"><use href="#i-hoja"></use></svg>
+          <div><h3>Seis paddocks</h3><p>Con refugio, sombra y agua, para que los caballos salgan cada día.</p></div>
+        </li>
+        <li class="caracteristica">
+          <svg class="icono" aria-hidden="true"><use href="#i-gota"></use></svg>
+          <div><h3>Duchas y caminador</h3><p>Duchas con agua caliente y caminador para seis caballos.</p></div>
+        </li>
+        <li class="caracteristica">
+          <svg class="icono" aria-hidden="true"><use href="#i-llave"></use></svg>
+          <div><h3>Guadarnés</h3><p>Taquillas individuales y material de escuela revisado cada semana.</p></div>
+        </li>
+        <li class="caracteristica">
+          <svg class="icono" aria-hidden="true"><use href="#i-cafe"></use></svg>
+          <div><h3>Cafetería y zona de descanso</h3><p>Con vistas a la pista, para que las familias vean las clases.</p></div>
+        </li>
+        <li class="caracteristica">
+          <svg class="icono" aria-hidden="true"><use href="#i-aparcamiento"></use></svg>
+          <div><h3>Aparcamiento gratuito</h3><p>Con sitio para camiones y remolques de caballos.</p></div>
+        </li>
+      </ul>
+
+      <section class="bloque" aria-labelledby="t-galeria">
+        <h2 id="t-galeria">Galería de fotos</h2>
+        <p>Pulsa en una foto para verla en grande.</p>
+        <ul class="galeria">
+          <li>
+            <button class="galeria__boton" type="button" data-galeria="Cuadras: 40 boxes amplios y ventilados">
+              <span class="foto"><img src="img/pupilaje-boxes.jpg" alt="Caballo negro asomando la cabeza por la puerta de su box" loading="lazy"></span>
+              <span class="galeria__pie">Cuadras</span>
+            </button>
+          </li>
+          <li>
+            <button class="galeria__boton" type="button" data-galeria="Edificio de las cuadras">
+              <span class="foto"><img src="img/instalaciones-cuadra-exterior.jpg" alt="Antiguo establo de piedra entre grandes árboles, iluminado por el sol del amanecer" loading="lazy"></span>
+              <span class="galeria__pie">Edificio de las cuadras</span>
+            </button>
+          </li>
+          <li>
+            <button class="galeria__boton" type="button" data-galeria="Pista exterior de arena de sílice (40 × 80 m)">
+              <span class="foto"><img src="img/instalaciones-pista-exterior.jpg" alt="Pista exterior de arena con valla blanca y naves de cuadras al fondo" loading="lazy"></span>
+              <span class="galeria__pie">Pista exterior</span>
+            </button>
+          </li>
+          <li>
+            <button class="galeria__boton" type="button" data-galeria="Picadero cubierto (20 × 40 m)">
+              <span class="foto"><img src="img/instalaciones-picadero-cubierto.jpg" alt="Picadero cubierto con suelo de arena y vigas de madera" loading="lazy"></span>
+              <span class="galeria__pie">Picadero cubierto</span>
+            </button>
+          </li>
+          <li>
+            <button class="galeria__boton" type="button" data-galeria="Paddocks con refugio y sombra">
+              <span class="foto"><img src="img/pupilaje-paddock.jpg" alt="Caballos blancos en un prado con margaritas, tras una valla de madera" loading="lazy"></span>
+              <span class="galeria__pie">Paddocks</span>
+            </button>
+          </li>
+          <li>
+            <button class="galeria__boton" type="button" data-galeria="Guadarnés con taquillas individuales">
+              <span class="foto"><img src="img/instalaciones-guadarnes.jpg" alt="Guadarnés con hileras de sillas de montar de cuero a ambos lados de un pasillo" loading="lazy"></span>
+              <span class="galeria__pie">Guadarnés</span>
+            </button>
+          </li>
+          <li>
+            <button class="galeria__boton" type="button" data-galeria="Cuidado diario: cepillado y revisión de cascos">
+              <span class="foto"><img src="img/pupilaje-cuidados.jpg" alt="Mujer cepillando a un caballo castaño junto a la puerta de la cuadra" loading="lazy"></span>
+              <span class="galeria__pie">Cuidados diarios</span>
+            </button>
+          </li>
+          <li>
+            <button class="galeria__boton" type="button" data-galeria="Material de escuela revisado cada semana">
+              <span class="foto"><img src="img/detalle-silla-cuero.jpg" alt="Detalle de una silla de montar de cuero marrón con estribo metálico" loading="lazy"></span>
+              <span class="galeria__pie">Material de escuela</span>
+            </button>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ===================== PÁGINA: RESERVAS ONLINE ===================== -->
+    <section class="pagina" id="reservas" data-titulo="Reserva tu clase online" aria-labelledby="t-reservas">
+      <header class="cabecera-pagina">
+        <p class="antetitulo">Reservas online</p>
+        <h1 id="t-reservas">Reserva tu clase online</h1>
+        <p class="entradilla">Elige actividad, día y hora, rellena tus datos y envía la solicitud al club por WhatsApp o por email. Te confirmamos la plaza enseguida.</p>
+        <ol class="pasos-reserva">
+          <li>Actividad</li>
+          <li>Día y hora</li>
+          <li>Tus datos</li>
+          <li>Envía la solicitud</li>
+        </ol>
+      </header>
+
+      <p class="aviso aviso--error" id="aviso-almacen" role="alert" hidden>Tu navegador no permite guardar datos: las reservas se perderán al cerrar la página. Envíalas al club en cuanto las hagas.</p>
+
+      <div class="reserva-rejilla" id="r-paso-formulario">
+        <form class="formulario" id="form-reserva" novalidate>
+          <p class="aviso aviso--error" id="r-errores" role="alert" hidden></p>
+
+          <fieldset class="formulario__bloque">
+            <legend><span class="numero-paso">1</span> Actividad</legend>
+            <div class="campo">
+              <label for="r-actividad">Clase o ruta</label>
+              <select id="r-actividad" name="actividad" aria-describedby="r-actividad-info e-actividad"></select>
+              <p class="campo__ayuda" id="r-actividad-info"></p>
+              <p class="campo__error" id="e-actividad"></p>
+            </div>
+            <fieldset class="campo" id="r-modalidad-grupo" hidden>
+              <legend>Modalidad</legend>
+              <div class="opciones" id="r-modalidades"></div>
+              <p class="campo__error" id="e-modalidad"></p>
+            </fieldset>
+          </fieldset>
+
+          <fieldset class="formulario__bloque">
+            <legend><span class="numero-paso">2</span> Día y hora</legend>
+            <div class="campo">
+              <label for="r-fecha">Día</label>
+              <input type="date" id="r-fecha" name="fecha" aria-describedby="r-fecha-ayuda e-fecha">
+              <p class="campo__ayuda" id="r-fecha-ayuda">De martes a domingo. Los lunes el club está cerrado.</p>
+              <p class="campo__error" id="e-fecha"></p>
+            </div>
+            <fieldset class="campo">
+              <legend>Hora</legend>
+              <div class="turnos" id="r-horas"></div>
+              <p class="campo__error" id="e-hora"></p>
+            </fieldset>
+          </fieldset>
+
+          <fieldset class="formulario__bloque">
+            <legend><span class="numero-paso">3</span> Datos del jinete</legend>
+            <div class="campos-dobles">
+              <div class="campo">
+                <label for="r-nombre">Nombre y apellidos</label>
+                <input type="text" id="r-nombre" name="nombre" autocomplete="name" aria-describedby="e-nombre">
+                <p class="campo__error" id="e-nombre"></p>
+              </div>
+              <div class="campo">
+                <label for="r-edad">Edad</label>
+                <input type="number" id="r-edad" name="edad" min="3" max="99" inputmode="numeric" aria-describedby="e-edad">
+                <p class="campo__error" id="e-edad"></p>
+              </div>
+              <div class="campo">
+                <label for="r-telefono">Teléfono</label>
+                <input type="tel" id="r-telefono" name="telefono" autocomplete="tel" aria-describedby="e-telefono">
+                <p class="campo__error" id="e-telefono"></p>
+              </div>
+              <div class="campo">
+                <label for="r-email">Email</label>
+                <input type="email" id="r-email" name="email" autocomplete="email" aria-describedby="e-email">
+                <p class="campo__error" id="e-email"></p>
+              </div>
+              <div class="campo campo--ancho" id="r-tutor-campo" hidden>
+                <label for="r-tutor">Nombre del padre, madre o tutor/a legal</label>
+                <input type="text" id="r-tutor" name="tutor" aria-describedby="r-tutor-ayuda e-tutor">
+                <p class="campo__ayuda" id="r-tutor-ayuda">Obligatorio para menores de 18 años.</p>
+                <p class="campo__error" id="e-tutor"></p>
+              </div>
+              <div class="campo campo--ancho">
+                <label for="r-notas">Observaciones <span class="opcional">(opcional)</span></label>
+                <textarea id="r-notas" name="notas" rows="3" maxlength="300" placeholder="Experiencia previa, alergias, lesiones…"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="formulario__bloque">
+            <div class="campo campo--casilla">
+              <input type="checkbox" id="r-privacidad" name="privacidad" aria-describedby="e-privacidad">
+              <label for="r-privacidad">He leído y acepto la <a href="#privacidad">política de privacidad</a> y las normas del club (el casco es obligatorio).</label>
+              <p class="campo__error" id="e-privacidad"></p>
+            </div>
+          </div>
+        </form>
+
+        <aside class="resumen" aria-labelledby="t-resumen">
+          <h2 id="t-resumen">Tu reserva</h2>
+          <dl class="resumen__lista" id="r-resumen"></dl>
+          <p class="resumen__total"><span>Total</span> <strong id="r-total" aria-live="polite">—</strong></p>
+          <p class="resumen__pago" id="r-pago"></p>
+          <button class="boton boton--primario boton--grande boton--bloque" type="submit" form="form-reserva">
+            <svg class="icono" aria-hidden="true"><use href="#i-check"></use></svg>Crear solicitud de reserva
+          </button>
+          <p class="resumen__nota">No pedimos ningún dato bancario.</p>
+        </aside>
+      </div>
+
+      <!-- Confirmación (aparece al crear la reserva) -->
+      <section class="confirmacion" id="r-confirmacion" aria-labelledby="t-confirmacion" hidden></section>
+    </section>
+
+    <!-- ===================== PÁGINA: MIS RESERVAS ===================== -->
+    <section class="pagina" id="mis-reservas" data-titulo="Mis reservas" aria-labelledby="t-mis-reservas">
+      <header class="cabecera-pagina">
+        <p class="antetitulo">Reservas online</p>
+        <h1 id="t-mis-reservas">Mis reservas</h1>
+        <p class="entradilla">Aquí ves las reservas y bonos guardados en este navegador. Recuerda: el club solo las recibe cuando se las envías por WhatsApp o por email.</p>
+      </header>
+      <div class="aviso aviso--ok" id="mis-reservas-estado" role="status" tabindex="-1" hidden></div>
+      <div id="mis-reservas-contenido"></div>
+    </section>
+
+    <!-- ===================== PÁGINA: CONTACTO ===================== -->
+    <section class="pagina" id="contacto" data-titulo="Contacto" aria-labelledby="t-contacto">
+      <header class="cabecera-pagina">
+        <p class="antetitulo">Estamos para ayudarte</p>
+        <h1 id="t-contacto">Contacto</h1>
+        <p class="entradilla">¿Tienes dudas sobre las clases, el pupilaje o las rutas? Llámanos, escríbenos o ven a conocernos.</p>
+      </header>
+
+      <!-- Tarjetas de contacto (se rellenan desde js/datos.js) -->
+      <div class="rejilla rejilla--contacto" id="tarjetas-contacto"></div>
+
+      <div class="bloque rejilla rejilla--2">
+        <section class="tarjeta tarjeta--cosida tarjeta--info" aria-labelledby="t-escribenos">
+          <h2 id="t-escribenos">Escríbenos</h2>
+          <p>Rellena el formulario y elige cómo enviarlo: se abrirá tu correo o WhatsApp con el mensaje ya escrito.</p>
+          <form class="formulario formulario--simple" id="form-contacto" novalidate>
+            <div class="campo">
+              <label for="c-nombre">Nombre</label>
+              <input type="text" id="c-nombre" autocomplete="name" aria-describedby="ec-nombre">
+              <p class="campo__error" id="ec-nombre"></p>
+            </div>
+            <div class="campos-dobles">
+              <div class="campo">
+                <label for="c-telefono">Teléfono <span class="opcional">(opcional)</span></label>
+                <input type="tel" id="c-telefono" autocomplete="tel">
+              </div>
+              <div class="campo">
+                <label for="c-email">Email <span class="opcional">(opcional)</span></label>
+                <input type="email" id="c-email" autocomplete="email">
+              </div>
+            </div>
+            <div class="campo">
+              <label for="c-asunto">Asunto</label>
+              <select id="c-asunto">
+                <option value="clases">Clases y bonos</option>
+                <option value="pupilaje">Pupilaje</option>
+                <option value="excursiones">Excursiones y rutas</option>
+                <option value="visita">Visitar el club</option>
+                <option value="otro">Otra consulta</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="c-mensaje">Mensaje</label>
+              <textarea id="c-mensaje" rows="5" maxlength="1000" aria-describedby="ec-mensaje"></textarea>
+              <p class="campo__error" id="ec-mensaje"></p>
+            </div>
+            <div class="acciones">
+              <button class="boton boton--primario" type="button" data-enviar-contacto="email">
+                <svg class="icono" aria-hidden="true"><use href="#i-email"></use></svg>Enviar por email
+              </button>
+              <button class="boton boton--whatsapp" type="button" data-enviar-contacto="whatsapp">
+                <svg class="icono" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Enviar por WhatsApp
+              </button>
+            </div>
+            <p class="aviso aviso--ok" id="c-estado" role="status" hidden></p>
+          </form>
+        </section>
+
+        <section class="tarjeta tarjeta--cosida tarjeta--info" aria-labelledby="t-llegar">
+          <h2 id="t-llegar">Cómo llegar</h2>
+          <div class="mapa">
+            <iframe id="mapa" title="Mapa con la zona del club" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <p class="nota" id="direccion-texto"></p>
+          <a class="boton boton--secundario" id="enlace-como-llegar" href="#contacto" target="_blank" rel="noopener">
+            <svg class="icono" aria-hidden="true"><use href="#i-externo"></use></svg>Abrir en Google Maps
+          </a>
+          <h3 class="contacto-horario"><svg class="icono" aria-hidden="true"><use href="#i-reloj"></use></svg> Horario del club</h3>
+          <dl class="horario" data-horario></dl>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== PÁGINA: PRIVACIDAD Y CRÉDITOS ===================== -->
+    <section class="pagina" id="privacidad" data-titulo="Privacidad y créditos" aria-labelledby="t-privacidad">
+      <header class="cabecera-pagina">
+        <p class="antetitulo">Información legal</p>
+        <h1 id="t-privacidad">Privacidad, aviso legal y créditos</h1>
+      </header>
+      <div class="texto-largo">
+        <h2>Web de ejemplo</h2>
+        <p>Esta web es un proyecto de ejemplo. El nombre del club, las personas, los precios, la dirección y los datos de contacto son ficticios.</p>
+
+        <h2>Qué datos se guardan y dónde</h2>
+        <p>Las reservas que haces en esta web se guardan <strong>solo en tu navegador</strong>, en este dispositivo, para que puedas consultarlas en «Mis reservas». No se envían a ningún servidor.</p>
+        <p>Cuando pulsas «Enviar por WhatsApp» o «Enviar por email», se abre tu aplicación con el mensaje ya escrito y eres tú quien decide enviarlo. A partir de ese momento el club recibe tus datos (nombre, edad, teléfono, email y observaciones) y solo los usa para gestionar tu reserva.</p>
+        <p>Puedes borrar todos tus datos cuando quieras desde «Mis reservas», con el botón «Borrar mis datos de este navegador».</p>
+
+        <h2>Servicios de terceros</h2>
+        <p>La web usa las tipografías de Google Fonts y un mapa de Google Maps, que se cargan desde los servidores de Google.</p>
+
+        <h2>Créditos de las fotografías</h2>
+        <p>Todas las fotografías tienen licencia libre y proceden de Wikimedia Commons. Se han redimensionado (y algunas recortado) para la web; las que tienen licencia CC BY-SA se comparten con la misma licencia. Puedes ver el detalle en <code>img/CREDITOS.txt</code>.</p>
+      </div>
+      <div class="tabla-desplazable creditos" tabindex="0" role="region" aria-label="Créditos de las fotografías">
+        <table class="tabla tabla--creditos">
+          <thead>
+            <tr><th scope="col">Foto en la web</th><th scope="col">Título original</th><th scope="col">Autor</th><th scope="col">Licencia</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Portada</th><td><a href="https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Umland_--_2013_--_2066.jpg" target="_blank" rel="noopener">Dülmen, Umland -- 2013 -- 2066</a></td><td>Dietmar Rabich</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a></td></tr>
+            <tr><th scope="row">Iniciación infantil</th><td><a href="https://commons.wikimedia.org/wiki/File:Pony_riding_at_Milton_Stud_-_geograph.org.uk_-_5235588.jpg" target="_blank" rel="noopener">Pony riding at Milton Stud</a></td><td>Vieve Forward</td><td><a href="https://creativecommons.org/licenses/by-sa/2.0/deed.es" target="_blank" rel="noopener">CC BY-SA 2.0</a></td></tr>
+            <tr><th scope="row">Equitación avanzada</th><td><a href="https://commons.wikimedia.org/wiki/File:Riding_lesson.jpg" target="_blank" rel="noopener">Riding lesson</a></td><td>CountryCousins1951</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a></td></tr>
+            <tr><th scope="row">Doma clásica</th><td><a href="https://commons.wikimedia.org/wiki/File:Abram_Hall_Dressage_June_2011_(66a).jpg" target="_blank" rel="noopener">Abram Hall Dressage June 2011 (66a)</a></td><td>John Harwood</td><td><a href="https://creativecommons.org/licenses/by/2.0/deed.es" target="_blank" rel="noopener">CC BY 2.0</a></td></tr>
+            <tr><th scope="row">Salto</th><td><a href="https://commons.wikimedia.org/wiki/File:Hunter_class_horse_jumping,_Northumberland_County_Show_-_geograph.org.uk_-_5413579.jpg" target="_blank" rel="noopener">Hunter class horse jumping, Northumberland County Show</a></td><td>Graham Robson</td><td><a href="https://creativecommons.org/licenses/by-sa/2.0/deed.es" target="_blank" rel="noopener">CC BY-SA 2.0</a></td></tr>
+            <tr><th scope="row">Material de escuela</th><td><a href="https://commons.wikimedia.org/wiki/File:Horses_are_used_for_work_and_recreational_riding_at_the_Birdwell_Clark_Ranch._(24815544960).jpg" target="_blank" rel="noopener">Horses are used for work and recreational riding at the Birdwell Clark Ranch</a></td><td>USDA NRCS Texas</td><td>Dominio público</td></tr>
+            <tr><th scope="row">Cuadras</th><td><a href="https://commons.wikimedia.org/wiki/File:Horse_stable,_Doha_03.jpg" target="_blank" rel="noopener">Horse stable, Doha 03</a></td><td>Davide Mauro</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a></td></tr>
+            <tr><th scope="row">Paddocks</th><td><a href="https://commons.wikimedia.org/wiki/File:Golden_Hour_With_Some_Ponies_(Unsplash).jpg" target="_blank" rel="noopener">Golden Hour With Some Ponies</a></td><td>Elijah Hail</td><td><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.es" target="_blank" rel="noopener">CC0 1.0</a></td></tr>
+            <tr><th scope="row">Cuidados diarios</th><td><a href="https://commons.wikimedia.org/wiki/File:Captain_Equestrian_150821-F-IF940-077.jpg" target="_blank" rel="noopener">Captain Equestrian 150821-F-IF940-077</a></td><td>Staff Sgt. Chad Strohmeyer</td><td>Dominio público</td></tr>
+            <tr><th scope="row">Paseo a caballo</th><td><a href="https://commons.wikimedia.org/wiki/File:Horseback_riding_with_ocean_views_(28397842255).jpg" target="_blank" rel="noopener">Horseback riding with ocean views</a></td><td>Santa Monica Mountains National Recreation Area</td><td>Dominio público</td></tr>
+            <tr><th scope="row">Ruta por el monte</th><td><a href="https://commons.wikimedia.org/wiki/File:Horse_Riding_in_the_Forest_-_geograph.org.uk_-_5439335.jpg" target="_blank" rel="noopener">Horse Riding in the Forest</a></td><td>Jon Alexander</td><td><a href="https://creativecommons.org/licenses/by-sa/2.0/deed.es" target="_blank" rel="noopener">CC BY-SA 2.0</a></td></tr>
+            <tr><th scope="row">Ruta al atardecer</th><td><a href="https://commons.wikimedia.org/wiki/File:Horse_ride_on_the_beach_at_dusk_(Unsplash).jpg" target="_blank" rel="noopener">Horse ride on the beach at dusk</a></td><td>Yudi Susilo</td><td><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.es" target="_blank" rel="noopener">CC0 1.0</a></td></tr>
+            <tr><th scope="row">Ruta de día completo</th><td><a href="https://commons.wikimedia.org/wiki/File:Horseback_riding_the_Backbone_Trail_(28293128292).jpg" target="_blank" rel="noopener">Horseback riding the Backbone Trail</a></td><td>Santa Monica Mountains National Recreation Area</td><td>Dominio público</td></tr>
+            <tr><th scope="row">Pista exterior</th><td><a href="https://commons.wikimedia.org/wiki/File:Valkyr_Stables_(Unsplash).jpg" target="_blank" rel="noopener">Valkyr Stables</a></td><td>Jon Phillips</td><td><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.es" target="_blank" rel="noopener">CC0 1.0</a></td></tr>
+            <tr><th scope="row">Picadero cubierto</th><td><a href="https://commons.wikimedia.org/wiki/File:Haras_national_de_Lamballe_man%C3%A8ge.jpg" target="_blank" rel="noopener">Haras national de Lamballe manège</a></td><td>Tsaag Valren</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a></td></tr>
+            <tr><th scope="row">Guadarnés</th><td><a href="https://commons.wikimedia.org/wiki/File:Tack_room_at_Stephens_Creek_Corral_(48015841306).jpg" target="_blank" rel="noopener">Tack room at Stephens Creek Corral</a></td><td>Yellowstone National Park</td><td>Dominio público</td></tr>
+            <tr><th scope="row">Edificio de las cuadras</th><td><a href="https://commons.wikimedia.org/wiki/File:Sunrise_on_the_1882_limestone_barn_(016e7f24-1dd8-b71b-0b4b-0c431b1062ee).jpg" target="_blank" rel="noopener">Sunrise on the 1882 limestone barn</a></td><td>NPS</td><td>Dominio público</td></tr>
+            <tr><th scope="row">Canela</th><td><a href="https://commons.wikimedia.org/wiki/File:Shetland_pony_-_Postbridge.jpg" target="_blank" rel="noopener">Shetland pony - Postbridge</a></td><td>Herbythyme</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a></td></tr>
+            <tr><th scope="row">Lucero</th><td><a href="https://commons.wikimedia.org/wiki/File:Andalusian_horse.jpg" target="_blank" rel="noopener">Andalusian horse</a></td><td>Katrina Swinnley</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a></td></tr>
+            <tr><th scope="row">Rocío</th><td><a href="https://commons.wikimedia.org/wiki/File:Urkiola_-_Saibi_-_Caballos_02.jpg" target="_blank" rel="noopener">Urkiola - Saibi - Caballos 02</a></td><td>Basotxerri</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a></td></tr>
+            <tr><th scope="row">Bombón</th><td><a href="https://commons.wikimedia.org/wiki/File:Shetland_pony_(2).jpg" target="_blank" rel="noopener">Shetland pony (2)</a></td><td>Ronnie Robertson</td><td><a href="https://creativecommons.org/licenses/by-sa/2.0/deed.es" target="_blank" rel="noopener">CC BY-SA 2.0</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= PIE DE PÁGINA ================= -->
+  <footer class="pie" id="pie">
+    <div class="pie__rejilla">
+      <div>
+        <a class="marca" href="#inicio">
+          <svg class="marca__icono" aria-hidden="true"><use href="#i-herradura"></use></svg>
+          <span class="marca__texto">
+            <span class="marca__antetitulo">Club Hípico</span>
+            <span class="marca__nombre">La Herradura</span>
+          </span>
+        </a>
+        <p class="pie__lema">Escuela de equitación, pupilaje y rutas a caballo en plena sierra desde 1987.</p>
+      </div>
+      <div>
+        <h2 class="pie__titulo">Contacto</h2>
+        <ul class="pie__lista" id="pie-contacto"></ul>
+      </div>
+      <div>
+        <h2 class="pie__titulo">Horario</h2>
+        <dl class="horario horario--pie" data-horario></dl>
+      </div>
+    </div>
+    <p class="pie__legal">© <span id="anio-actual">2026</span> Club Hípico La Herradura · Web de ejemplo con datos ficticios · <a href="#privacidad">Privacidad, aviso legal y créditos</a></p>
+  </footer>
+
+  <!-- ================= VISOR DE FOTOS ================= -->
+  <dialog class="visor" id="visor" aria-label="Visor de fotos">
+    <div class="visor__marco">
+      <img class="visor__imagen" src="" alt="">
+      <p class="visor__pie"><span class="visor__texto"></span><span class="visor__contador"></span></p>
+      <button class="visor__boton visor__boton--anterior" type="button" data-visor="anterior" aria-label="Foto anterior">
+        <svg class="icono" aria-hidden="true"><use href="#i-izquierda"></use></svg>
+      </button>
+      <button class="visor__boton visor__boton--siguiente" type="button" data-visor="siguiente" aria-label="Foto siguiente">
+        <svg class="icono" aria-hidden="true"><use href="#i-derecha"></use></svg>
+      </button>
+      <button class="visor__boton visor__boton--cerrar" type="button" data-visor="cerrar" aria-label="Cerrar el visor">
+        <svg class="icono" aria-hidden="true"><use href="#i-cerrar"></use></svg>
+      </button>
+    </div>
+  </dialog>
+</body>
+</html>

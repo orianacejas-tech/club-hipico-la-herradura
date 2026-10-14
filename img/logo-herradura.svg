@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Logotipo del Club Hípico La Herradura (también se usa como icono de la pestaña) -->
+  <rect width="64" height="64" rx="14" fill="#3B2A1E"/>
+  <path transform="translate(6.4 7.2) scale(0.8)" fill="#C9A24A" fill-rule="evenodd" d="M11 56C8 48 7 38 8 28A24 24 0 0 1 56 28C57 38 56 48 53 56H44C46 48 46.5 39 46 30A14 14 0 0 0 18 30C17.5 39 18 48 20 56Z M10.9 41.5a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z M12.55 22.5a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z M18.2 14.45a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z M42.6 14.45a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z M48.25 22.5a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z M49.9 41.5a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z"/>
+</svg>
